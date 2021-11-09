@@ -10,16 +10,3 @@ class AppUser {
 
   AppUser({required this.uid, required this.username, required this.email, required this.avatar, required this.level});
 }
-
-class UserData {
-  final String uid;
-  final String name;
-  final String sugars;
-  final int strength;
-
-  UserData(
-      {required this.uid,
-      required this.name,
-      required this.sugars,
-      required this.strength});
-}
