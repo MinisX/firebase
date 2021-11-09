@@ -61,6 +61,7 @@ class AuthService {
   }
 
   // * register with e-mail and password
+  // ~ triggered from register.dart class
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
       // ~ First we do request to FireBase and it awaits for the response

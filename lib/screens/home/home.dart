@@ -1,4 +1,4 @@
-import 'package:crew_brew/models/brew.dart';
+import 'package:crew_brew/models/Quiz.dart';
 import 'package:crew_brew/screens/home/settings_form.dart';
 import 'package:flutter/material.dart';
 import 'package:crew_brew/services/auth.dart';
@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
 
     // ~ Use provider package to listen to the brew stream we defined in database
     // return StreamProvider<QuerySnapshot?>.value(
-    return StreamProvider<List<Brew>?>.value(
+    return StreamProvider<List<Quiz>?>.value(
       initialData: null,
       value: DatabaseService(uid: '').brews,
       child: Scaffold(

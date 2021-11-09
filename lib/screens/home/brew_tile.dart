@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:crew_brew/models/brew.dart';
+import 'package:crew_brew/models/Quiz.dart';
 
 class BrewTile extends StatelessWidget {
   const BrewTile({Key? key, required this.brew}) : super(key: key);
 
-  final Brew brew;
+  final Quiz brew;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,8 @@ class BrewTile extends StatelessWidget {
                 backgroundColor: Colors.brown[brew.strength],
                 backgroundImage: AssetImage('assets/coffee_icon.png'),
               ),
-              title: Text(brew.name),
-              subtitle: Text('Takes ${brew.sugars} sugar(s)')),
+              title: Text(brew.quizOwner),
+              subtitle: Text('Takes ${brew.quizTitle} sugar(s)')),
         ));
   }
 }

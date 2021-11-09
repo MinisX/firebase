@@ -43,7 +43,7 @@ class _RegisterState extends State<Register> {
                     icon: Icon(Icons.person),
                     label: Text('Sign In'),
                     onPressed: () {
-                      // ~ This calss toggleView function from authenticate.dart
+                      // ~ This class toggleView function from authenticate.dart
                       widget.toggleView();
                     }),
               ],
@@ -60,7 +60,7 @@ class _RegisterState extends State<Register> {
                 key: _formKey,
                 child: Column(children: <Widget>[
                   SizedBox(height: 20.0),
-                  // ~ TextFormField for the e-mail
+                  // * TextFormField for the e-mail
                   TextFormField(
                       // ! TextInputDecoration is defined in shared/constants.dart. We extend the predefined widget with method 'copyWith'
                       decoration:
@@ -74,7 +74,7 @@ class _RegisterState extends State<Register> {
                         setState(() => email = val.trim());
                       }),
                   SizedBox(height: 20.0),
-                  // ~ TextForField the the password
+                  // * TextFormField the the password
                   TextFormField(
                       // ! TextInputDecoration is defined in shared/constants.dart. We extend the predefined widget with method 'copyWith'
                       decoration:
@@ -91,6 +91,7 @@ class _RegisterState extends State<Register> {
                         setState(() => password = val);
                       }),
                   SizedBox(height: 20.0),
+                  // * Registration button
                   RaisedButton(
                       color: Colors.pink[400],
                       child: Text(
@@ -107,6 +108,7 @@ class _RegisterState extends State<Register> {
                           setState(() => loading = true);
                           // ~ We will get null or AppUser, so we don't know the type of return. Therefore we use dynamic
                           // ~ We await for the result
+                          // ! Here we try to register the user
                           dynamic result = await _auth
                               .registerWithEmailAndPassword(email, password);
                           // ~ If registration is not succesful, we provide an error message

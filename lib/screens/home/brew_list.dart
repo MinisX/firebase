@@ -2,7 +2,7 @@ import 'package:crew_brew/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-import 'package:crew_brew/models/brew.dart';
+import 'package:crew_brew/models/Quiz.dart';
 import 'brew_tile.dart';
 
 // ! This widget is responsible for outputting different brews on the page
@@ -18,11 +18,11 @@ class _BrewListState extends State<BrewList> {
   Widget build(BuildContext context) {
     // ~ We access the brews. It's updated when some changes to the database occur
     // ~ The provider is defined in home.dart class
-    final brews = Provider.of<List<Brew>?>(context);
+    final brews = Provider.of<List<Quiz>?>(context);
     if (brews != null) {
       brews.forEach((brew) {
-        print(brew.name);
-        print(brew.sugars);
+        print(brew.quizOwner);
+        print(brew.quizTitle);
         print(brew.strength);
       });
 

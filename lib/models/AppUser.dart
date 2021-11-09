@@ -3,6 +3,10 @@
 
 class AppUser {
   final String uid;
+  // String username
+  // String e-mail
+  // String avatar
+  // int level
 
   AppUser({required this.uid});
 }
