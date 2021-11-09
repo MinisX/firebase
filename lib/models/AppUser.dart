@@ -3,12 +3,12 @@
 
 class AppUser {
   final String uid;
-  // String username
-  // String e-mail
-  // String avatar
-  // int level
+  String username;
+  String email;
+  String avatar;
+  int level;
 
-  AppUser({required this.uid});
+  AppUser({required this.uid, required this.username, required this.email, required this.avatar, required this.level});
 }
 
 class UserData {
