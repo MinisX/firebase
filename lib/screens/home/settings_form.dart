@@ -100,7 +100,7 @@ class _SettingsFormState extends State<SettingsForm> {
                         // ! Save the data into Firestore DB
                         // ~ we are gonna use updateUserData declared in services/database.dart
                         if(_formKey.currentState!.validate()){
-                          await DatabaseService(uid: user.uid).updateUserData(
+                          await DatabaseService(uid: user.uid).updateQuizData(
                             _currentSugars.isEmpty ? userData.sugars : _currentSugars,
                             _currentName.isEmpty ? userData.name : _currentName,
                             _currentStrength < 100 ? userData.strength : _currentStrength,

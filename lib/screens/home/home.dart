@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
     // return StreamProvider<QuerySnapshot?>.value(
     return StreamProvider<List<Quiz>?>.value(
       initialData: null,
-      value: DatabaseService(uid: '').brews,
+      value: DatabaseService(uid: '').quizes,
       child: Scaffold(
         backgroundColor: Colors.brown[50],
         appBar: AppBar(

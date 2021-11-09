@@ -62,7 +62,7 @@ class AuthService {
 
   // * register with e-mail and password
   // ~ triggered from register.dart class
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(String username, String email, String password) async {
     try {
       // ~ First we do request to FireBase and it awaits for the response
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -71,8 +71,9 @@ class AuthService {
       User? user = result.user;
 
       // ! create a document in Firestore Database for that user with the UID
+      // ! this creates a new userData enrty in the firebase, where username and e-mail are provided and avatar is default, level is 0
       await DatabaseService(uid: user!.uid)
-          .updateUserData('0', 'new crew member', 100);
+          .updateQuizData(username, email, 'default', 0);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
