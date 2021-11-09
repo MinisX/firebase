@@ -1,4 +1,4 @@
-import 'package:crew_brew/models/AppUser.dart';
+import 'package:crew_brew/models/user/AppUser.dart';
 import 'package:crew_brew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -18,6 +18,7 @@ class AuthService {
 
   // ~ auth change user stream
   Stream<AppUser?> get user {
+
     // ~ authStateChanges notifies about changes to the user's sign-in state (such as sign-in or sign-out)
     return _auth
         .authStateChanges()
@@ -71,9 +72,9 @@ class AuthService {
       User? user = result.user;
 
       // ! create a document in Firestore Database for that user with the UID
-      // ! this creates a new userData enrty in the firebase, where username and e-mail are provided and avatar is default, level is 0
+      // ! this creates a new userData entry in the firebase, where username and e-mail are provided and avatar is default, level is 0
       await DatabaseService(uid: user!.uid)
-          .updateQuizData(username, email, 'default', 0);
+          .updateUserData(username, email, 'default', 0);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

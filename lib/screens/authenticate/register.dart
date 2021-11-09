@@ -23,6 +23,7 @@ class _RegisterState extends State<Register> {
   bool loading = false;
 
   // ~ text field states
+  String username = '';
   String email = '';
   String password = '';
   String error = '';
@@ -59,6 +60,20 @@ class _RegisterState extends State<Register> {
                 // ~ in the future we want to validate our form, then we do it via this formKey
                 key: _formKey,
                 child: Column(children: <Widget>[
+                  SizedBox(height: 20.0),
+                  // * TextFormField for the username
+                  TextFormField(
+                    // ! TextInputDecoration is defined in shared/constants.dart. We extend the predefined widget with method 'copyWith'
+                      decoration:
+                      textInputDecoration.copyWith(hintText: 'Username'),
+                      // ~ we return null value is this formField is valid or a string
+                      // ~ if it's not valid
+                      validator: (val) =>
+                      val!.isEmpty ? 'Enter a username' : null,
+                      onChanged: (val) {
+                        // ~ We take email state and set it equal to value which is in e-mail textField
+                        setState(() => username = val.trim());
+                      }),
                   SizedBox(height: 20.0),
                   // * TextFormField for the e-mail
                   TextFormField(
@@ -110,7 +125,7 @@ class _RegisterState extends State<Register> {
                           // ~ We await for the result
                           // ! Here we try to register the user
                           dynamic result = await _auth
-                              .registerWithEmailAndPassword(email, password);
+                              .registerWithEmailAndPassword(username, email, password);
                           // ~ If registration is not succesful, we provide an error message
                           if (result == null) {
                             setState(() {

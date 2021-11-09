@@ -23,7 +23,7 @@ class _BrewListState extends State<BrewList> {
       brews.forEach((brew) {
         print(brew.quizOwner);
         print(brew.quizTitle);
-        print(brew.strength);
+        //print(brew.strength);
       });
 
       return ListView.builder(

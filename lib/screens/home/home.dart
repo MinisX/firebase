@@ -5,7 +5,7 @@ import 'package:crew_brew/services/auth.dart';
 import 'package:crew_brew/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'brew_list.dart';
+import 'quiz_list.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);

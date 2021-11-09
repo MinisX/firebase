@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crew_brew/models/AppUser.dart';
-import 'package:crew_brew/models/userData.dart';
+import 'package:crew_brew/models/user/AppUser.dart';
+import 'package:crew_brew/models/user/UserData.dart';
 import 'package:flutter/material.dart';
 import 'package:crew_brew/models/Quiz.dart';
 
@@ -17,12 +17,13 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('quizes');
 
   final CollectionReference userDataCollection =
-  FirebaseFirestore.instance.collection('user_data');
+      FirebaseFirestore.instance.collection('user_data');
 
   // ~ it's return value is Future, because it's async function
   // ! We call this function when user registers in auth.dart
   // ! This function creates/updates quiz entry in the DB
-  Future updateQuizData(String quizTitle, String quizOwner, String description) async {
+  Future updateQuizData(
+      String quizTitle, String quizOwner, String description) async {
     // ~ Get the document based on the UID of the user
     // ~ If document does not exist yet, then Firebase will create the document with that UID. Thereby linking the Firestore document for that user with the Firebase User
     // ~ We pass the data through map (key-value pairs) to set method
@@ -35,10 +36,12 @@ class DatabaseService {
 
   // ~ it's return value is Future, because it's async function
   // ! We call this function when user registers in auth.dart
-  Future updateUserData(String username, String email, String avatar, int level) async {
+  Future updateUserData(
+      String username, String email, String avatar, int level) async {
     // ~ Get the document based on the UID of the user
     // ~ If document does not exist yet, then Firebase will create the document with that UID. Thereby linking the Firestore document for that user with the Firebase User
     // ~ We pass the data through map (key-value pairs) to set method
+    // ! The unique key which we will use to access data is UID ( User ID )
     return await userDataCollection.doc(uid).set({
       'username': username,
       'email': email,
@@ -64,9 +67,10 @@ class DatabaseService {
     // ~ Convert snapshot to UserData class that we have created in models/AppUser.dart
     return UserData(
         uid: uid,
-        name: snapshot['name'],
-        sugars: snapshot['sugars'],
-        strength: snapshot['strength']);
+        username: snapshot['username'],
+        email: snapshot['email'],
+        avatar: snapshot['avatar'],
+        level: snapshot['level']);
   }
 
   // ~ Create new stream which will notify us about any changes in the database
@@ -82,16 +86,6 @@ class DatabaseService {
   // ! get user doc stream
   // Stream<DocumentSnapshot> get userData{
   Stream<UserData> get userData {
-    // ~ we return the stream of UserData
-    return quizCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
-  }
-
-  // ~ We create a new stream inside the database service class, which will be linked up to
-  // ~ my firestore document. We will take UID and setup a stream with that document
-  // ~ so whoever logins, it will be new stream. Only their document in the firestore database
-  // ! get user doc stream
-  // Stream<DocumentSnapshot> get userData{
-  Stream<UserData> get userData_new {
     // ~ we return the stream of UserData
     return userDataCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }

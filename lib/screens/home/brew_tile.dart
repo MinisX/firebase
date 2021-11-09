@@ -16,7 +16,7 @@ class BrewTile extends StatelessWidget {
               leading: CircleAvatar(
                 radius: 25.0,
                 // ! The intensity of the color depends on the strength of the brew ( coffee )
-                backgroundColor: Colors.brown[brew.strength],
+                //backgroundColor: Colors.brown[brew.strength],
                 backgroundImage: AssetImage('assets/coffee_icon.png'),
               ),
               title: Text(brew.quizOwner),

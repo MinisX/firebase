@@ -1,4 +1,5 @@
-import 'package:crew_brew/models/AppUser.dart';
+import 'package:crew_brew/models/user/AppUser.dart';
+import 'package:crew_brew/models/user/UserData.dart';
 import 'package:crew_brew/services/database.dart';
 import 'package:crew_brew/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,8 @@ class _SettingsFormState extends State<SettingsForm> {
         builder: (context, snapshot) {
           // ~ If data is available, then we return the form
           if (snapshot.hasData) {
+            return Loading();
+            /*
             // ! Here we access userData from database
             UserData? userData = snapshot.data;
             return Form(
@@ -110,6 +113,8 @@ class _SettingsFormState extends State<SettingsForm> {
                 ],
               ),
             );
+
+             */
           } else {
             return Loading();
           }
